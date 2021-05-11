@@ -2,12 +2,12 @@ var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 
 
-canvas.width = 900
-canvas.height = 400;
+canvas.width = 1200;
+canvas.height = 450;
 
-const MIN_RADIUS = 8;
-const MAX_RADIUS = 12;
-const NUMBER_OF_BALLS = 20;
+const MIN_RADIUS = 6;
+const MAX_RADIUS = 8;
+const NUMBER_OF_BALLS = 70;
 
 var Ball = function(x,y,vx,vy,radius){
     this.x = x;
@@ -70,10 +70,6 @@ var Ball = function(x,y,vx,vy,radius){
                     this.vy = -this.vy;
                     ballArray[j].vx = -ballArray[j].vx;
                     ballArray[j].vy = -ballArray[j].vy;
-                    // this.vx *= -1;
-                    // this.vy *= -1;
-                    // ballArray[j].vx *= -1;
-                    // ballArray[j].vy *= -1;
                 }
 
             }
@@ -83,7 +79,7 @@ var Ball = function(x,y,vx,vy,radius){
 
 var ballArray = [];
 function getBall(){
-    while(ballArray.length < 20){
+    while(ballArray.length < NUMBER_OF_BALLS){
         var x = Math.floor(Math.random()*canvas.width - 12);
         var y = Math.floor(Math.random()*canvas.height - 12);
 
@@ -93,9 +89,7 @@ function getBall(){
         // var vx = Math.random() < 0.5 ? 1.5 : -1.5;
         // var vy = Math.random() < 0.5 ? 1.5 : -1.5;
 
-        // var vx = Math.floor(Math.random() * 4 + -5);
-        // var vy =  Math.floor(Math.random() * 4 + -5);
-        var radius = Math.floor((Math.random() * 12) + 8);
+        var radius = Math.floor((Math.random() * MAX_RADIUS) + MIN_RADIUS);
         var ball = new Ball(x,y,vx,vy,radius);
         ballArray.push(ball);
     }
