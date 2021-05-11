@@ -50,18 +50,19 @@ button{
     cursor: pointer;
     height: 15px;
     width: 15px;
-    margin: 0 2px;
+    margin: 0 5px;
     background-color: #bbb;
-    border-radius: 5px;
+    border-radius: 50px;
 }
 .indicator-dot:hover{
     background-color: black;
 }
 .indicator{
     position: absolute;
-    top:95%;
+    top: 95%;
     left: 50%;
     transform: translateX(-50%);
+    height: 15px;
 }
 .active{
     display: inline-block;

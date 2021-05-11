@@ -3,24 +3,20 @@ var carousel = document.querySelector('.carousel-image-wrapper');
 var images = document.getElementsByTagName('img');
 
 var currentIndex = 0;
-var cl = 0;
 var left=0;
 function animate(prevIndex,currentIndex){
     const diff = currentIndex - prevIndex;
     const animation = diff * 400;
-    console.log('aW'+ animation);
     const pxCount = animation / 20;
-    console.log(pxCount)
 
     var interval = setInterval(function(){
         left -= pxCount;
-        console.log('left'+left)
+        // console.log('left'+left)
         carousel.style.left = left + 'px';
         if(Math.abs(left)==Math.abs(currentIndex*400)){
-            console.log('here')
+            // console.log('here')
             clearInterval(interval)
         }
-        console.log('cl'+cl)
     },20)
 }
 
@@ -32,8 +28,8 @@ function moveLeft(){
     else{
         currentIndex--;
     }
-    console.log(currentIndex);
-    console.log(prevIndex);
+    // console.log(currentIndex);
+    // console.log(prevIndex);
     animate(prevIndex,currentIndex);
    
     displayDot();
@@ -47,8 +43,8 @@ function moveRight(){
     else{
         currentIndex++;
     }
-    console.log('curr',currentIndex);
-    console.log('prev'+prevIndex)
+    // console.log('curr',currentIndex);
+    // console.log('prev'+prevIndex)
     animate(prevIndex,currentIndex);
     displayDot();
 }
@@ -86,11 +82,19 @@ for(var i=0 ; i<images.length; i++){
     dot.setAttribute('id',i)
     indicator.appendChild(dot);
 }
-var control = document.getElementById('dotID');
-control.addEventListener('click', function(e){
-    console.log(e.target.id);
-    indicatorClick(e.target.id);
+var control = document.querySelectorAll('.indicator-dot');
+// console.log(control)
+
+control.forEach(function(item,index){
+    // console.log(item,index)
+    item.onclick = function(){
+        console.log('clicked');
+        console.log(index)
+        indicatorClick(index)
+
+    }
 })
+
 function indicatorClick(index){
     console.log(index)
     currentIndex = index;
