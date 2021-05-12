@@ -9,7 +9,7 @@ canvas.height = 550;
 const RIGHT_EDGE = 280;
 const LEFT_EDGE = 20;
 const DISTANCE = 100;
-var speed = 3;
+var speed = 5;
 
 var ctx = canvas.getContext('2d');
 
