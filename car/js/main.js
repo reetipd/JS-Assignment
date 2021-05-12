@@ -9,7 +9,7 @@ canvas.height = 550;
 const RIGHT_EDGE = 280;
 const LEFT_EDGE = 20;
 const DISTANCE = 100;
-var speed = 5;
+var speed = 7;
 
 var ctx = canvas.getContext('2d');
 
@@ -102,7 +102,7 @@ document.addEventListener('keydown',function(e){
         var moveRight = 1;
         player.update(moveRight);
     }
-    console.log(player.x)
+    // console.log(player.x)
     if(e.key === 'ArrowLeft' && player.x > LEFT_EDGE){
         var moveLeft = -1;
         player.update(moveLeft);

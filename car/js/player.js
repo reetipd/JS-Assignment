@@ -22,7 +22,7 @@ var Player = function(x,y){
                         this.x + this.width > opponentArray[i].x &&
                         this.y < opponentArray[i].y + opponentArray[i].height &&
                         this.y + this.height > opponentArray[i].y){
-                            console.log('collision');
+                            // console.log('collision');
                             return true;
                         }
                     }

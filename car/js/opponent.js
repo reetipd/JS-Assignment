@@ -36,21 +36,33 @@ var Opponent = function(x,y){
 
 var opponentNo = 2;
 var opponentArray = [];
-var px = [20,120,220];
-var len = px.length;
-var startYPos = -60;
+var startXPox = [20,120,220];
+var len = startXPox.length;
+
 var generateOpponent = function(){
     while(opponentArray.length < opponentNo){
         // console.log('here')
-        var index = Math.floor(Math.random()*(len));
-        var opponent = new Opponent(px[index],startYPos);
-        // console.log(index);
-        opponentArray.push(opponent);
+        while(1){
+            var index1 = Math.floor(Math.random()*(len));
+            var index2 = Math.floor(Math.random()*(len));
+            if(index1 !== index2)break;
+        }
+        
+        var startYPos1 = Math.random()*-90;
+        var startYPos2 = Math.random()*-40;
+        // console.log(startYPos);
+        var opponent1 = new Opponent(startXPox[index1],startYPos1);
+        var opponent2 = new Opponent(startXPox[index2],startYPos2);
+                // console.log(index);
+        opponentArray.push(opponent1);
+        opponentArray.push(opponent2);
 
     }
 }
+
+
 var clearOpponent = function(){
-    console.log(opponentArray)
+    // console.log(opponentArray)
     for(var i=0;i<opponentArray.length+1;i++){
         opponentArray = [];
         player.score += 10;
