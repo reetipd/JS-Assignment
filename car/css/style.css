@@ -18,7 +18,8 @@ body{
     background-color: green;
     height: 100vh;
 }
-.instruction{
+.instruction,
+.gameover{
     position: absolute;
     border: 2px solid black;
     width: 500px;
@@ -27,18 +28,31 @@ body{
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    background-color: brown;
+    background-color: #B7950B;
     text-align: center;
 }
-.instruction button{
+.instruction div,
+.gameover div{
+    padding: 30px 20px;
+    margin: 0 auto;
+    line-height: 35px;
+    font-size: 20px;
+}
+.instruction button,
+.gameover button{
     display: block;
+    padding: 12px;
+    border-radius: 10px;
+    border-radius: none;
     text-align: center;
+    background-color: #2980B9;
+    cursor: pointer;
+    margin: 0 auto;
+    font-size: 15px;
+    width: 150px;
+    font-family: 'Press start 2P',sans-serif ;
 }
-.score{
-    background-color: hotpink;
-    height: 100px;
-    width: 200px;
-    position: absolute;
-    top: 20px;
-    left: 20px;
+
+.gameover{
+    display: none;
 }

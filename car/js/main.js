@@ -6,6 +6,10 @@ canvas.style.display = 'none';
 canvas.width = 300;
 canvas.height = 550;
 
+const RIGHT_EDGE = 280;
+const LEFT_EDGE = 20;
+const DISTANCE = 100;
+var speed = 3;
 
 var ctx = canvas.getContext('2d');
 
@@ -31,19 +35,27 @@ var Road = function(x,y,width,height){
     
 }
 
+//3-lanes
 var lane1 = new Road(0,0,canvas.width,canvas.height);
 var lane2 = new Road(100,0,canvas.width,canvas.height);
 var lane3 = new Road(200,0,canvas.width,canvas.height);
 
 var instruction = document.querySelector('.instruction');
 var button = document.getElementById('btn');
+var gameover = document.querySelector('.gameover');
+var playAgain = document.getElementById('playAgain');
 
 button.addEventListener('click', startGame);
+playAgain.addEventListener('click',startAgain);
+
 function startGame(){
+    if(player.start){
         instruction.style.display = 'none';
         canvas.style.display = 'block';
 
         window.requestAnimationFrame(playGame);
+    }
+        
 }
 
 function playGame(){
@@ -53,7 +65,10 @@ function playGame(){
     lane3.handleRoad();
     // player.clear();
     player.draw();
-    player.collision();
+
+    if(player.collision()){
+        endGame();
+    };
     // opponent1.draw();
     generateOpponent();
     for(var i=0; i<opponentArray.length; i++){
@@ -61,24 +76,36 @@ function playGame(){
         opponentArray[i].update();
     }
     // generateOpponent();
-    requestAnimationFrame(playGame);
-    ctx.font - '50px Arial'
-    ctx.fillText('Score',150,50)
+    if(player.start){
+        requestAnimationFrame(playGame);
+    }
+    
+    ctx.font = '50px Arial';
+    ctx.fillText(player.score,150,50);
     // console.log('score' + player.score)
     
     
 }
+function endGame(){
+    player.start=false;
+    gameover.style.display = 'block';
+    // console.log(gameover)
+}
+
+function startAgain(){
+    player.start = true;
+    startGame();
+}
 
 document.addEventListener('keydown',function(e){
-    if(e.key === 'ArrowRight' && player.x+player.width < 280){
+    if(e.key === 'ArrowRight' && player.x+player.width < RIGHT_EDGE){
         var moveRight = 1;
         player.update(moveRight);
     }
     console.log(player.x)
-    if(e.key === 'ArrowLeft' && player.x > 20){
+    if(e.key === 'ArrowLeft' && player.x > LEFT_EDGE){
         var moveLeft = -1;
         player.update(moveLeft);
     }
 })
 
-var score = document.getElementsByClassName('score');
