@@ -1,0 +1,79 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: 'Press start 2P',sans-serif ;
+}
+#canvas{
+    border: 4px solid rgb(41, 236, 41);
+    height: 550px;
+    width: 300px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    position: relative;
+}
+.container{
+    position: relative;
+    height: 100vh;
+}
+.instruction,
+.gameover{
+    position: absolute;
+    border: 2px solid black;
+    width: 300px;
+    height: 550px;
+    background-image: url(../images/background-day.png);
+    background-repeat: no-repeat;
+    background-size: 300px 550px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
+img{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 260px;
+}
+.instruction div,
+.gameover div{
+    padding: 30px 20px;
+    line-height: 35px;
+    font-size: 20px;
+}
+.instruction button{
+    position: absolute;
+    display: block;
+    border-style: none;
+    text-align: center;
+    background-image: url(../images/play.png);
+    background-repeat: no-repeat;
+    cursor: pointer;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    margin: 0 auto;
+    width: 60px;
+    height: 40px;
+    font-family: 'Press start 2P',sans-serif ;
+}
+.gameover button{
+    display: block;
+    padding: 12px;
+    border-radius: 10px;
+    border-radius: none;
+    text-align: center;
+    background-color: #2980B9;
+    cursor: pointer;
+    margin: 0 auto;
+    font-size: 15px;
+    width: 150px;
+    font-family: 'Press start 2P',sans-serif ;
+}
+.gameover{
+    display: none;
+}
