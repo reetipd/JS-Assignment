@@ -39,6 +39,9 @@ img{
     transform: translate(-50%,-50%);
     width: 260px;
 }
+.gameover img{
+    top: 10%;
+}
 .instruction div,
 .gameover div{
     padding: 30px 20px;
