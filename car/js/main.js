@@ -89,12 +89,14 @@ function playGame(){
 function endGame(){
     player.start=false;
     gameover.style.display = 'block';
+    // document.location.reload();
     // console.log(gameover)
 }
 
 function startAgain(){
     player.start = true;
-    startGame();
+    // startGame();
+    document.location.reload();
 }
 
 document.addEventListener('keydown',function(e){
