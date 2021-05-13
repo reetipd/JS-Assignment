@@ -5,7 +5,6 @@ var pipeBottom = new Image();
 pipeBottom.src = './images/pipe-green.png';
 
 var Pipe = function(x,y){
-if(Math.abs(this.topHeight - this.bottomHeight) >= 100)break;
     this.topHeight = (Math.random()*180) + 40;
     this.bottomHeight = (Math.random()*180 + 120);
     this.xTop = canvas.width-20;
