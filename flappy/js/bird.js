@@ -8,9 +8,9 @@ var Bird = function(){
     this.vy = 0;
     this.width = 36;
     this.height = 24;
-    this.gravity = 0.8;
+    this.gravity = 0.9;
     this.speed = 0;
-    this.movement = 0.2;
+    this.movement = 0.6;
     this.flapY =0;
     this.start = true;
 
@@ -20,16 +20,20 @@ var Bird = function(){
     this.update = function(){
         if(this.y<0 || this.y >= base.y - this.width){
             endGame();
-            cancelAnimationFrame(myId)
+            // cancelAnimationFrame(myId)
         }
         this.speed += this.movement;
         this.speed *= this.gravity;
         this.y += this.speed;
 
+        if(spacePressed){
+            this.flap();
+        }
+
     }
     this.flap = function(){
-        this.flapY -= 4.8;
-        this.y += this.flapY;
+        // this.flapY -= 0.8;
+        this.speed -= 1.8;
     }
     this.collision = function(){
         var yTop = 0;

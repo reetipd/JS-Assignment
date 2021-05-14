@@ -5,10 +5,10 @@ var pipeBottom = new Image();
 pipeBottom.src = './images/pipe-green.png';
 
 var Pipe = function(x,y){
-    this.topHeight = (Math.random()*180) + 40;
+    this.topHeight = (Math.random()*160) + 40;
     this.bottomHeight = (Math.random()*180 + 120);
-    this.xTop = canvas.width-20;
-    this.xBottom = canvas.width-20;
+    this.xTop = canvas.width-40;
+    this.xBottom = canvas.width-40;
     this.width = 60;
 
 
@@ -36,11 +36,16 @@ function handlePipes(){
     for(var i=0; i<pipeArr.length; i++){
         pipeArr[i].draw();
         pipeArr[i].update();
+        if(pipeArr[i].xTop + pipeArr[i].width === bird.x){
+            console.log('here')
+            score += 10;
+        }
         if(pipeArr[i].xTop + pipeArr[i].width <= 0){
             pipeArr.pop();
-            score += 10;
+            // score += 10;
             // console.log(score)
         }
+        
     }
 }
 

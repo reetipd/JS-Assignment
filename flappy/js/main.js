@@ -122,7 +122,7 @@ document.addEventListener('keydown', function(e){
     if(e.key === " "){
         spacePressed = true;
         // bird.update();
-        bird.flap();
+        // bird.flap();
     }
 })
 
