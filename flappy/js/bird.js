@@ -1,6 +1,8 @@
 var sprite = new Image();
 sprite.src = './images/birdSprite.png'
 var frameX = 0; 
+var frm2 = new Image();
+frm2.src = './images/frame-2.png'
 
 var Bird = function(){
     this.x = 150;

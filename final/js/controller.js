@@ -112,9 +112,9 @@ var Controller = function(){
         if(keys[38]){
             lavaBoy.moveUp();
         }
-        if(keys[40]){
-            lavaBoy.moveDown();
-        }
+        // if(keys[40]){
+        //     lavaBoy.moveDown();
+        // }
         if(keys[65]){
             hydroGirl.moveLeft();
         }
@@ -132,7 +132,7 @@ var Controller = function(){
             lavaBoy.moving_up = false;
         }
         if(!keys[37]){
-            if(lavaBoy.xV < 0){
+            if(lavaBoy.xV <= 0){
                 // lavaBoy.moving_left = false;
                 lavaBoy.stop();
             }
@@ -141,24 +141,21 @@ var Controller = function(){
         }
         if(!keys[39]){
             // console.log('bere')
-            if(lavaBoy.xV > 0){
+            if(lavaBoy.xV >= 0){
                 // lavaBoy.moving_right = false;
                 lavaBoy.stop();
             }
            
         }
-        if(!keys[40]){
-            lavaBoy.moving_down = false;
-        }
         if(!keys[65]){
-            if(hydroGirl.xV < 0){
+            if(hydroGirl.xV <= 0){
                 // hydroGirl.moving_left = false;
                 hydroGirl.stop();
             }
             
         }
         if(!keys[68]){
-            if(hydroGirl.xV > 0){
+            if(hydroGirl.xV >= 0){
                 // hydroGirl.moving_left = false;
                 hydroGirl.stop();
             }

@@ -8,7 +8,7 @@ canvas.height = 550;
 var score = 0;
 var highScore = localStorage.getItem('birdHighScore') | 0;
 
-var gameSpeed = 5;
+var gameSpeed = 1;
 var distance = 0;
 var count = 0; 
 var background = new Image();

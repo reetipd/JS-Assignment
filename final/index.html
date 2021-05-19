@@ -5,35 +5,50 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
     <title>Document</title>
 </head>
 <body>
     <div class="container">
         <canvas id="canvas"></canvas>
+        <div class="startscreen">
+            <img src="./images/playgame.png" alt="playgame">
+        </div>
         <div class="instruction">
             <div>
-                <p>Press space bar to move up..!!<br>
-                <button id="btn">Play</button>
+                <h1>LAVABOY AND HYDROGIRL</h1><br><br>
+                <p>CONTROL <span id="lavaboy">LAVABOY</span> WITH <span id="lavaboy">ARROW</span> KEYS<br><br>
+                    CONTROL <span id="hydrogirl">HYDROGIRL</span> WITH <span id="hydrogirl">A W D </span>KEYS </p><br><br>
+                <h4>NEVER MIX FIRE AND WATER!!!</h1>
+                <div class="lower-part">
+                    <div class="image">
+                        <img src="./images/fireboy-watergirl.png" alt="fireboy-watergirl">
+                    </div>
+                    <div class="level">
+                        <button id="level1">Level 1</button>
+                        <button id="level2">Level 2</button>
+                    </div>
                     
-                </p>
+                </div>
+                    
             </div>
             
         </div>
         <div class="gameover">
-            <div>
+            <!-- <div>
                 PLAY AGAIN !!! <br><br>
-                You score : <span class="your-score"></span> <br><br>
-                Highscore : <span class="high-score"></span><br><br>
                 <button id="playAgain">PLAY AGAIN</button>
-            </div>
+            </div> -->
+            <img src="./images/gameover.png" alt="">
             
         </div>
     </div>
     <script src="./js/map.js"></script>
-   
     <script src="./js/collider.js"></script>
     <script src="./js/player.js"></script>
+    <script src="./js/gate.js"></script>
     <script src="./js/controller.js"></script>
     <script src="./js/main.js"></script>
 </body>
