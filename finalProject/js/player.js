@@ -46,10 +46,10 @@ var Player = function(x,y,type){
     this.jumpAudio.src = './audio/Jump_fb.wav';
 
     this.diamondAudio = new Audio();
-    this.diamondAudio.src = './audio/diamond.wav';
+    this.diamondAudio.src = './audio/Diamond.wav';
 
     this.dead = new Audio();
-    this.dead.src = './audio/death.wav';
+    this.dead.src = './audio/Death.wav';
 
 
 
