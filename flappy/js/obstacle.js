@@ -5,10 +5,10 @@ var pipeBottom = new Image();
 pipeBottom.src = './images/pipe-green.png';
 
 var Pipe = function(x,y){
-    this.topHeight = (Math.random()*160) + 40;
+    this.topHeight = (Math.random()*180) + 40;
     this.bottomHeight = (Math.random()*180 + 120);
-    this.xTop = canvas.width-40;
-    this.xBottom = canvas.width-40;
+    this.xTop = canvas.width-20;
+    this.xBottom = canvas.width-20;
     this.width = 60;
 
 
