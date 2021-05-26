@@ -16,7 +16,7 @@ var Collider = function(){
                 break;
             
             case 4: //goo
-                if(player.topGooCollision(tileY))return;
+                if(player.topGooCollision(tileY,levelId))return;
                 tileY = tileY + tileSize/2;
                 if(player.topCollision(tileY))return;
                 if(player.bottomCollision(tileSize/2 + tileY));
@@ -37,14 +37,14 @@ var Collider = function(){
                 break;
 
             case 7: //changing liquid
-                if(player.topLiquidCollision(tileY,5))return;  //initial water
+                if(player.topLiquidCollision(tileY,5,levelId))return;  //initial water
                 tileY = tileY + tileSize/2;
                 if(player.topCollision(tileY))return;
                 if(player.bottomCollision(tileSize/2 + tileY))
                 break;
 
             case 17: //changing liquid
-                if(player.topLiquidCollision(tileY,6))return;  //initial water
+                if(player.topLiquidCollision(tileY,6,levelId))return;  //initial water
                 tileY = tileY + tileSize/2;
                 if(player.topCollision(tileY))return;
                 if(player.bottomCollision(tileSize/2 + tileY))

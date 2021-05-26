@@ -5,6 +5,9 @@ var Platform = function(x,y,type){
     this.oldY = this.y;
     this.oldX = this.x;
 
+    this.initialX = this.x;
+    this.initialY = this.y;
+
     this.d = 0;
     this.w = 80;
 
@@ -23,6 +26,11 @@ var Platform = function(x,y,type){
     }
     this.getRight = function(){
         return this.x + this.w;
+    }
+    this.reset = function(){
+        this.x = this.initialX;
+        this.y = this.initialY;
+        this.vx = this.vy = 0;
     }
 
     this.move = function(){

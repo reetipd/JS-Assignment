@@ -3,6 +3,9 @@ var Gate = function(y,x){
     this.y = y;
     this.width = 20;
     this.height = 40;
+
+    this.initialX = x;
+    this.initialY = y;
     
     this.posY = this.y*tileSize;
     this.posX = this.x*tileSize;
@@ -12,6 +15,14 @@ var Gate = function(y,x){
 
     this.draw = function(){
         ctx.drawImage(gateImg, this.x*tileSize, this.y*tileSize,this.width,this.height);
+    }
+
+    this.reset = function(){
+        this.x = this.initialX;
+        this.y = this.initialY;
+        this.posY = this.y*tileSize;
+        this.posX = this.x*tileSize;
+
     }
  
     this.getTop = function(){

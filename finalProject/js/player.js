@@ -2,6 +2,9 @@ var Player = function(x,y,type){
     this.x = x;
     this.y = y;
 
+    this.initialX = x;
+    this.initialY = y;
+
     this.width = 20;
     this.height = 35;
     this.speed = 5;
@@ -51,7 +54,7 @@ var Player = function(x,y,type){
     this.dead = new Audio();
     this.dead.src = './audio/Death.wav';
 
-
+    
 
     this.draw = function(){
         if (this.type === 6){
@@ -64,6 +67,14 @@ var Player = function(x,y,type){
             // this.sprite_sheet.image.src = './images/ssss.png';
             // ctx.drawImage(this.sprite_sheet.image,this.animation.frame * 40,0,40,40,this.x,this.y,40,40);
         }
+    }
+
+    this.reset = function(){
+        // console.log('called reser')
+   
+        this.x = this.initialX;
+        this.y = this.initialY;
+        this.score = 0;
     }
 
     this.update = function(){
@@ -281,8 +292,11 @@ var Player = function(x,y,type){
     this.topLiquidCollision = function(tileTop,liquidType,levelId){
         if(this.getBottom() > tileTop && this.getOldBottom() <= tileTop){
             if(this.type !== liquidType){
+                // console.log('dead')
                 this.dead.play();
-                this.gameover(levelId);
+                // this.gameover(levelId)
+                // console.log(levelId)
+                gameoverFunc(levelId);
             }
             return true;
         }
@@ -290,11 +304,11 @@ var Player = function(x,y,type){
     }
 
     //check player collision with top of goo
-    this.topGooCollision = function(tileTop){
+    this.topGooCollision = function(tileTop,levelId){
         if(this.getBottom() >= tileTop && this.getOldBottom() <= tileTop){
             if(this.type === 5 || this.type === 6){
                 this.dead.play();
-                this.gameover();
+                gameoverFunc(levelId);
             }
             return true;
         }
@@ -302,7 +316,7 @@ var Player = function(x,y,type){
     }
 
     //check player collision with goo liquid of greenLiquid class
-    this.topGooLiquidCollision = function(){
+    this.topGooLiquidCollision = function(levelId){
         tileTop = gooLiquid[0].x * tileSize - 1;
         tileStart = gooLiquid[0].y * tileSize;
         ln = gooLiquid.length - 1;
@@ -312,7 +326,7 @@ var Player = function(x,y,type){
             if(this.getBottom() > tileTop && this.getOldBottom() <= tileTop){
                 if(this.type === 5 || this.type === 6){
                     this.dead.play();
-                    this.gameover();
+                    gameoverFunc(levelId);
                 }
                 return true;
             }
@@ -329,7 +343,7 @@ var Player = function(x,y,type){
             if(this.getLeft() <= tileEnd && this.getOldLeft() >= tileEnd || this.getRight() >= tileStart && this.getOldRight() <= tileStart){
                 if(this.type === 5 || this.type === 6){
                     this.dead.play();
-                    this.gameover(levelId);
+                    gameoverFunc(levelId);
                 }
                 return true;  
         }
@@ -380,12 +394,20 @@ var Player = function(x,y,type){
         return false;
     }
 
-    this.gameover = function(levelId){
-        this.start = false;
-        stopAudio(clock);
-        gameover.style.display = 'block';
-        canvas.style.display = 'none';
-    }
+    // this.gameover = function(levelId){
+    //     this.start = false;
+    //     stopAudio(clock);
+    //     gameover.style.display = 'block';
+    //     canvas.style.display = 'none';
+    //     reset.addEventListener('click',function(){
+    //         gameover.style.display = 'none';
+    //         canvas.style.display = 'block';
+    //         // that.reset();
+    //         // console.log(that)
+    //         performReset();
+    //         start(levelId)
+    //     })
+    // }
 
     //check player collision with the blockage gate
     this.gate = function(){

@@ -65,7 +65,8 @@ body{
     font-family: 'Press Start 2P', cursive;
     margin: 10px;
 }
-.level button:hover{
+
+.active:hover{
     border: 2px solid white;
 }
 #lavaboy{
@@ -82,4 +83,7 @@ body{
 .gameover img{
     width: 800px;
     height: 480px;
+}
+.lock{
+    display: none;
 }

@@ -1,6 +1,8 @@
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 
+var currentLevel = 1;
+
 var tileSize = 40;
 
 canvas.width = 800;
@@ -16,6 +18,8 @@ var startX1 = 40;
 var startY1 = 400;
 var startX2 = 84;
 var startY2 = 400;
+
+var gameoverFunc;
 
 var lavaBoy = new Player(startX1,startY1,6);
 var hydroGirl = new Player(startX2,startY2,5);
@@ -81,4 +85,10 @@ var level3 = document.getElementById('3');
 var level4 = document.getElementById('4');
 var gameover = document.querySelector('.gameover');
 var reset = document.querySelector('.reset');
+var home = document.querySelector('.home');
+
+document.getElementById('2').disabled = true;
+document.getElementById('3').disabled = true;
+document.getElementById('4').disabled = true;
+document.getElementById('5').disabled = true;
 

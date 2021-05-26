@@ -4,6 +4,9 @@ var Box = function(y,x){
     this.width = 40;
     this.height = 40;
 
+    this.initialX = x;
+    this.initialY = y;
+
     this.posY = this.y*tileSize;
     this.posX = this.x*tileSize;
 
@@ -34,8 +37,19 @@ var Box = function(y,x){
         return this.x * tileSize;
     }
     this.update = function(){
+        // console.log(this.y)
         this.y -= this.yv;
         this.posY = this.y * tileSize;
+    }
+
+    this.reset = function(){
+        this.x = this.initialX;
+        this.y = this.initialY;
+        this.posY = this.y*tileSize;
+        this.posX = this.x*tileSize;
+        this.yv = 0.1
+
+
     }
 
     this.collision = function(collisionMap,tileSize){
