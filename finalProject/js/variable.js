@@ -30,12 +30,6 @@ var box = new Box(9,1);
 var loc;
 var count = 0;
 
-var seconds = 12;
-var time; 
-
-var clock = new Audio();
-clock.src = './audio/Clock.mp3';
-
 var boy = new Image();
 boy.src = './images/lavaboy.png';
 
@@ -79,16 +73,11 @@ var gooLiquid = [new Goo(11,4), new Goo(11,5), new Goo(11,6), new Goo(11,7), new
     new Goo(11,9), new Goo(11,10), new Goo(11,11), new Goo(11,12), new Goo(11,13)]
 
 var instruction = document.querySelector('.instruction');
-var level1 = document.getElementById('1');
-var level2 = document.getElementById('2');
-var level3 = document.getElementById('3');
-var level4 = document.getElementById('4');
 var gameover = document.querySelector('.gameover');
 var reset = document.querySelector('.reset');
 var home = document.querySelector('.home');
+var congratulations = document.querySelector('.congratulations');
 
 document.getElementById('2').disabled = true;
 document.getElementById('3').disabled = true;
 document.getElementById('4').disabled = true;
-document.getElementById('5').disabled = true;
-

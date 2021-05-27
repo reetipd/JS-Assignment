@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./css/style.css">
     <title>Document</title>
 </head>
@@ -31,12 +32,6 @@
                         <button id="2" onclick="startG(this.id)">Level 2</button>
                         <button id="3" onclick="startG(this.id)">Level 3</button>
                         <button id="4" onclick="startG(this.id)">Level 4</button>
-                        <button id="5" onclick="startG(this.id)">Level 5</button>
-                        <!-- <button id="1"  class ="active">Level 1</button>
-                        <button id="2">Level 2</button>
-                        <button id="3">Level 3</button>
-                        <button id="4">Level 4</button>
-                        <button id="5">Level 5</button> -->
                     </div>
                     
                 </div>
@@ -44,10 +39,16 @@
             </div>
             
         </div>
+        <div class="congratulations">
+            <h1>congratulations!!</h1>
+        </div>
         <div class="gameover">
             <!-- <img src="./images/gameover.png" alt=""> -->
-            <button class="reset">RESET</button>
-            <button class="home">HOME</button>
+            <div class="icon">
+                <a class="home"><i class="fa fa-home" ></i></a>
+                <a class="reset"><i class="fa fa-refresh" ></i></a>
+            </div>
+            
             
         </div>
     </div>

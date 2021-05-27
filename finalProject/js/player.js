@@ -8,8 +8,7 @@ var Player = function(x,y,type){
     this.width = 20;
     this.height = 35;
     this.speed = 5;
-    this.jumpSpeed = -5;
-    // this.gravity = 0.8;
+
     this.xV = 0;
     this.yV = 0;
 
@@ -22,9 +21,6 @@ var Player = function(x,y,type){
     this.moving_right = false;
     this.moving_left = false;
     this.moving_up = false;
-    this.moving_down = false;
-
-    this.onPlate = false;
 
     this.oldX = x;  //keep track of last position of player, used for collision detection
     this.oldY = y;
@@ -34,14 +30,7 @@ var Player = function(x,y,type){
     this.animation = new Animation();
 
     this.sprite_sheet = {
-         //idleRight, runRight, idleLeft, runLeft, jump
-        // frame_sets : [[0,1,2,3],      
-        //               [4,5,6,7,8,9],
-        //               [10,11,12,13],
-        //               [14,15,16,17,18,19],
-        //               [20,21,22,23]], 
         frame_sets : [[0,1,2,3],[4],[5,6,7,8]], //left,idle,right
-        // frame_sets : [[0],[1,2,3,4,5,7,8,9],[10,11,12,13,14,15,16]], // idle,jump,run
         image : new Image()
     };
 
@@ -63,17 +52,20 @@ var Player = function(x,y,type){
             // ctx.drawImage(boy,this.x,this.y,this.width,this.height);
         }
         if (this.type === 5){
-            ctx.drawImage(girl,this.x,this.y,this.width,this.height);
+            this.sprite_sheet.image.src = './images/girl.png';
+            ctx.drawImage(this.sprite_sheet.image,this.animation.frame * 40,0,40,40,Math.floor(this.x),Math.floor(this.y),this.width + 5,this.height);
+            // ctx.drawImage(girl,this.x,this.y,this.width,this.height);
             // this.sprite_sheet.image.src = './images/ssss.png';
             // ctx.drawImage(this.sprite_sheet.image,this.animation.frame * 40,0,40,40,this.x,this.y,40,40);
         }
     }
 
-    this.reset = function(){
-        // console.log('called reser')
-   
+    this.reset = function(){   
         this.x = this.initialX;
         this.y = this.initialY;
+        this.start = true;
+    }
+    this.resetScore = function(){
         this.score = 0;
     }
 
@@ -119,9 +111,7 @@ var Player = function(x,y,type){
         
      
     }
-    this.moveDown = function(){
-        this.moving_down = true;
-    }
+
     this.stop = function(){
         this.moving_left = false;
         this.moving_right = false;
@@ -166,7 +156,7 @@ var Player = function(x,y,type){
             
         var top, bottom, left, right;
 
-
+        //game boundary
         if(this.getLeft() < 0){
             this.x = 0;
         }
@@ -182,10 +172,11 @@ var Player = function(x,y,type){
         //top-left
         top = Math.floor(this.getTop() / tileSize); //row
         left = Math.floor(this.getLeft() / tileSize);  // col
-        value = collisionMap[top][left];
+        value = collisionMap[top][left]; //tileValue
         plateTileValue = blockageMap[top][left];
+        doorTileValue = gameMap[top][left];
 
-        this.collider.checkTileCollision(this,value, left*tileSize,top*tileSize, tileSize,levelId);
+        this.collider.checkTileCollision(this,value, left*tileSize,top*tileSize, tileSize,levelId);  //<player,tileval,x,y)
         this.collider.checkPlateCollision(this,plateTileValue, left*tileSize, top*tileSize,this.loc);
 
         //top-right
@@ -193,6 +184,8 @@ var Player = function(x,y,type){
 	    right  = Math.floor(this.getRight() / tileSize);     //col
 	    value  = collisionMap[top][right];   //[y][x]
         plateTileValue = blockageMap[top][right];
+        doorTileValue = gameMap[top][right];
+
     	this.collider.checkTileCollision(this,value, right*tileSize, top*tileSize,tileSize,levelId);	
         this.collider.checkPlateCollision(this,plateTileValue, right*tileSize, top*tileSize,this.loc);	   
 
@@ -242,7 +235,7 @@ var Player = function(x,y,type){
     //check player collision with the top of the tile(1)
     this.topCollision = function(top){
         if(this.getBottom() > top && this.getOldBottom() <= top){  //player moving from top to bottom
-            this.y = top - this.height - 0.0001;
+            this.y = top - this.height - 0.01;
             this.yV = 0;
             this.moving_up = false;
             return true;
@@ -254,7 +247,7 @@ var Player = function(x,y,type){
     this.leftCollision = function(tileLeft){   
         if(this.getRight() > tileLeft && this.getOldRight() <= tileLeft){  //player moving from left to right
             {
-                this.x = tileLeft - this.width - 0.0001;
+                this.x = tileLeft - this.width - 0.01;
                 this.xV = 0;
                 return true;
             }
@@ -267,7 +260,7 @@ var Player = function(x,y,type){
     this.rightCollision = function(tileRight){
         if(this.getLeft() < tileRight && this.getOldLeft() >= tileRight){ 
             {
-                this.x = tileRight + 0.0001;
+                this.x = tileRight ;
                 this.xV = 0.1;
                 return true;
             }   
@@ -281,7 +274,7 @@ var Player = function(x,y,type){
     //check player collision with bottom side of the tile(1)
     this.bottomCollision = function(tileBottom){
         if(this.getTop() < (tileBottom) && this.getOldTop() >= (tileBottom)){
-            this.y = tileBottom - 0.0001;
+            this.y = tileBottom ;
             this.yV = 0;
             return true;
         }
@@ -292,7 +285,8 @@ var Player = function(x,y,type){
     this.topLiquidCollision = function(tileTop,liquidType,levelId){
         if(this.getBottom() > tileTop && this.getOldBottom() <= tileTop){
             if(this.type !== liquidType){
-                // console.log('dead')
+                // console.log('dead');
+                this.start = false;
                 this.dead.play();
                 // this.gameover(levelId)
                 // console.log(levelId)
@@ -307,6 +301,7 @@ var Player = function(x,y,type){
     this.topGooCollision = function(tileTop,levelId){
         if(this.getBottom() >= tileTop && this.getOldBottom() <= tileTop){
             if(this.type === 5 || this.type === 6){
+                this.start = false;
                 this.dead.play();
                 gameoverFunc(levelId);
             }
@@ -325,6 +320,7 @@ var Player = function(x,y,type){
         if(this.getLeft() <= tileEnd && this.getRight() >= tileStart){
             if(this.getBottom() > tileTop && this.getOldBottom() <= tileTop){
                 if(this.type === 5 || this.type === 6){
+                    this.start = false;
                     this.dead.play();
                     gameoverFunc(levelId);
                 }
@@ -339,9 +335,10 @@ var Player = function(x,y,type){
         tileStart = gooLiquid[0].y * tileSize;
         ln = gooLiquid.length - 1;
         tileEnd = (gooLiquid[ln].y * tileSize) + tileSize;
-        if((this.getBottom() + 0.0001) === tileTop){
+        if((this.getBottom() + 0.01) === tileTop){
             if(this.getLeft() <= tileEnd && this.getOldLeft() >= tileEnd || this.getRight() >= tileStart && this.getOldRight() <= tileStart){
                 if(this.type === 5 || this.type === 6){
+                    this.start = false;
                     this.dead.play();
                     gameoverFunc(levelId);
                 }

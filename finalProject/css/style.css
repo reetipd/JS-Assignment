@@ -28,8 +28,9 @@ body{
     height: 480px;
 }
 .instruction{
+    color: #C4B262;
     display: block;
-    background-color: #5f5e5b;
+    background-color: #322D16;
     width: 800px;
     height: 480px;
     /* display: none; */
@@ -64,18 +65,28 @@ body{
     padding: 5px 35px;
     font-family: 'Press Start 2P', cursive;
     margin: 10px;
+    border: 2px solid #322D16;
+}
+.level button{
+    color: #706947; 
+}
+.level > .active{
+    color: #C4B262;
 }
 
 .active:hover{
     border: 2px solid white;
 }
 #lavaboy{
-    color: rgb(133, 24, 24);
+    color: rgb(206, 34, 34);
 }
 #hydrogirl{
-    color: rgb(35, 62, 141);
+    color: rgb(30, 72, 196);
 }
 .gameover{
+    position: relative;
+    background-image: url('../images/gameover.png');
+    background-size: 800px 480px;
     display: none;
     width: 800px;
     height: 480px;
@@ -84,6 +95,33 @@ body{
     width: 800px;
     height: 480px;
 }
-.lock{
+.icon{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.icon a{
+    margin: 20px
+}
+.home,
+.reset{
+    font-size: 78px;
+    color: #C4B262;
+    cursor: pointer;
+}
+.congratulations{
     display: none;
+    transition: ease-in;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: #322D16;    
+    /* height: 200px; */
+}
+.congratulations h1{
+    color:#C4B262;
+    /* position: absolute; */
+    /* top: 50%; */
 }
