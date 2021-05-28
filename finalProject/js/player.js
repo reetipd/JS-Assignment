@@ -49,14 +49,10 @@ var Player = function(x,y,type){
         if (this.type === 6){
             this.sprite_sheet.image.src = './images/boy.png';
             ctx.drawImage(this.sprite_sheet.image,this.animation.frame * 40,0,40,40,Math.floor(this.x),Math.floor(this.y),this.width + 5,this.height);
-            // ctx.drawImage(boy,this.x,this.y,this.width,this.height);
         }
         if (this.type === 5){
             this.sprite_sheet.image.src = './images/girl.png';
             ctx.drawImage(this.sprite_sheet.image,this.animation.frame * 40,0,40,40,Math.floor(this.x),Math.floor(this.y),this.width + 5,this.height);
-            // ctx.drawImage(girl,this.x,this.y,this.width,this.height);
-            // this.sprite_sheet.image.src = './images/ssss.png';
-            // ctx.drawImage(this.sprite_sheet.image,this.animation.frame * 40,0,40,40,this.x,this.y,40,40);
         }
     }
 
@@ -169,6 +165,9 @@ var Player = function(x,y,type){
         else if(this.getBottom() > canvas.height){
             this.y = canvas.height - 40;
         }
+
+     
+
         //top-left
         top = Math.floor(this.getTop() / tileSize); //row
         left = Math.floor(this.getLeft() / tileSize);  // col
@@ -178,6 +177,18 @@ var Player = function(x,y,type){
 
         this.collider.checkTileCollision(this,value, left*tileSize,top*tileSize, tileSize,levelId);  //<player,tileval,x,y)
         this.collider.checkPlateCollision(this,plateTileValue, left*tileSize, top*tileSize,this.loc);
+
+        //bottom-right
+        bottom = Math.floor(this.getBottom() / tileSize);			
+	    right  = Math.floor(this.getRight()  / tileSize);  
+	    value  = collisionMap[bottom][right];
+        plateTileValue = blockageMap[bottom][right];
+        doorTileValue = gameMap[bottom][right];
+  
+
+
+		this.collider.checkTileCollision(this,value, right*tileSize, bottom*tileSize, tileSize,levelId);
+        this.collider.checkPlateCollision(this,plateTileValue, right*tileSize, bottom*tileSize,this.loc);
 
         //top-right
         top    = Math.floor(this.getTop() / tileSize);		 //row		
@@ -189,8 +200,9 @@ var Player = function(x,y,type){
     	this.collider.checkTileCollision(this,value, right*tileSize, top*tileSize,tileSize,levelId);	
         this.collider.checkPlateCollision(this,plateTileValue, right*tileSize, top*tileSize,this.loc);	   
 
+        //bottom-left
 
-	    bottom = Math.floor(this.getBottom() / tileSize);				// Gets bottom left
+	    bottom = Math.floor(this.getBottom() / tileSize);				
 	    left   = Math.floor(this.getLeft()   / tileSize);
 	    value  = collisionMap[bottom][left];
 
@@ -200,18 +212,6 @@ var Player = function(x,y,type){
 		this.collider.checkTileCollision(this,value, left*tileSize, bottom*tileSize, tileSize,levelId);
         this.collider.checkPlateCollision(this,plateTileValue, left*tileSize, bottom*tileSize,this.loc);
 
-	    
-
-	    bottom = Math.floor(this.getBottom() / tileSize);				// Gets bottom right
-	    right  = Math.floor(this.getRight()  / tileSize);  
-	    value  = collisionMap[bottom][right];
-        plateTileValue = blockageMap[bottom][right];
-        doorTileValue = gameMap[bottom][right];
-  
-
-
-		this.collider.checkTileCollision(this,value, right*tileSize, bottom*tileSize, tileSize,levelId);
-        this.collider.checkPlateCollision(this,plateTileValue, right*tileSize, bottom*tileSize,this.loc);
         
 
         //for coin in lava/water bottom-right
@@ -352,59 +352,6 @@ var Player = function(x,y,type){
         this.score += 1;
         this.diamondAudio.play();
     }
-
-
-    this.topBoxCollision = function(top){
-        if(this.getBottom() > top && this.getOldBottom() <= top){
-            this.y = top - this.height - 0.01;
-            this.yV = 0;
-            return true;
-        }
-        return false;
-    }
-
-    this.rightGateCollision = function(gateRight,gateHeight){
-        gateRight = gateRight+20;
-        if(this.getLeft() <= gateRight && this.getOldRight() >= gateRight){
-            this.xV = 0;
-            this.x = gateRight - 0.01;
-            return true;
-        }
-        return false;
-    }
-    this.leftGateCollision = function(gateLeft){
-        if(this.getRight() >= gateLeft && this.getOldRight() <= gateLeft){
-            this.x = gateLeft - this.width;
-            this.xV = 0;
-            return true;
-        }
-        return false;
-    }
-
-
-    this.bottomGateCollision = function(gateBottom){
-        if(this.getTop() <= gateBottom && this.getOldTop() >= gateBottom){
-            this.y = gateBottom;
-            this.yV = 0;
-            return true;
-        }
-        return false;
-    }
-
-    // this.gameover = function(levelId){
-    //     this.start = false;
-    //     stopAudio(clock);
-    //     gameover.style.display = 'block';
-    //     canvas.style.display = 'none';
-    //     reset.addEventListener('click',function(){
-    //         gameover.style.display = 'none';
-    //         canvas.style.display = 'block';
-    //         // that.reset();
-    //         // console.log(that)
-    //         performReset();
-    //         start(levelId)
-    //     })
-    // }
 
     //check player collision with the blockage gate
     this.gate = function(){

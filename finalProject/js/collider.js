@@ -12,7 +12,6 @@ var Collider = function(){
                 if(player.leftCollision(tileX,tileY))return;
                 if(player.rightCollision(tileX + tileSize,tileY))return;
                 if(player.bottomCollision(tileY + tileSize))return;
-                // if(box.bottomCollision(tileY + tileSize))return;
                 break;
             
             case 4: //goo
@@ -140,11 +139,6 @@ var Collider = function(){
                         }
                 }
                 break;
-            // case 21: //blockage gate
-            //     if(player.rightGateCollision(tileX,tileY))return;
-            //     if(player.leftGateCollision(tileX))return;
-            //     if(player.bottomGateCollision(tileY))return;
-            //     break;
             case 25:   //block
                 if(player.rightCollision(tileX,tileY))return;
                 if(player.leftCollision(tileX))return;
@@ -152,10 +146,6 @@ var Collider = function(){
                 if(player.topCollision(tileY))return;
                 break;
             case 26:  //open blockage block
-                // X = tileX/tileSize - 2;
-                // Y = tileY/tileSize + 1;
-                // blockageMap[Y][X] = 0;
-                // break;
                 box.update();
                 break;
             

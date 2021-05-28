@@ -81,8 +81,8 @@ function play(levelId){
 
 
     if((position2 === 11 && hydroGirl.type === 5) && (position1 === 10 && lavaBoy.type === 6)){
-    
-        performReset(levelId);
+
+        performReset();
                 
         congratulations.style.display = 'block';
 
@@ -95,7 +95,6 @@ function play(levelId){
         },2000);
         lavaBoy.reset();
         hydroGirl.reset();
-        cancelAnimationFrame(myReq);
 
     }
     ctx.font = '32px Arial';
@@ -113,11 +112,11 @@ function performReset(){
         levelData[0].diamondMap = [
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19, 0, 18, 0, 19, 0, 18, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 8, 0, 9, 0, 8, 0, 0, 0],
             [0, 19, 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 9, 9, 0, 0, 8, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 18, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 8, 8, 8, 8, 8, 8, 8, 8, 0, 0, 0, 0, 0, 0],
@@ -162,7 +161,7 @@ function performReset(){
             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             [1, 0, 0, 0, 0, 0, 0, 0, 18, 0, 19, 0, 18, 0, 0, 0, 0, 0, 0, 1],
             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-            [1, 8, 8, 1, 0, 0, 0, 1, 1, 8, 1, 9, 1, 1, 0, 0, 1, 9, 9, 1],
+            [1, 8, 8, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 9, 9, 1],
             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
             [1, 0, 0, 0, 1, 8, 8, 8, 1, 0, 0, 1, 9, 9, 9, 1, 0, 0, 0, 1],
             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
@@ -181,10 +180,10 @@ function performReset(){
             [0, 0, 0, 0, 0, 0, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 8, 8, 8, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 18, 18, 0, 0, 18, 18, 0, 0, 18, 18, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 18, 18, 0, 0, 18, 18, 0, 0, 18, 18, 0, 0, 0, 8, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         ]
@@ -194,12 +193,10 @@ function performReset(){
         
         
     }
-    else{
         currentLevel = parseInt(currentLevel) + 1;
         document.getElementById(currentLevel).disabled = false;
         document.getElementById(currentLevel).classList.add('active');
 
-    }
 }
 
 function getLevelDate(levelId){
@@ -219,7 +216,7 @@ function startAgain(){
 
 // gameover.addEventListener('click',startAgain);
 
-function startG(levelId){
+function startGame(levelId){
     currentLevel = levelId;
     instruction.style.display = 'none';
     canvas.style.display = 'block';
@@ -230,10 +227,6 @@ function gameoverFunc(levelId){
   
     gameover.style.display = 'block';
     canvas.style.display = 'none';
-    // lavaBoy.reset();
-    // hydroGirl.reset();
-    cancelAnimationFrame(myReq);
-    
     
     reset.addEventListener('click',function(){
         lavaBoy.reset();
@@ -244,7 +237,7 @@ function gameoverFunc(levelId){
         gameover.style.display = 'none';
         canvas.style.display = 'block';
         performReset();
-        startG(levelId);
+        startGame(levelId);
        
     })
 }
