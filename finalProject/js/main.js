@@ -171,6 +171,11 @@ function performReset(){
             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
         ]
+        for(let index = 0; index < platforms.length; index ++){
+            let platform = platforms[index];    
+            platform.reset();
+        }
+       
     }
     if(currentLevel == 4){
         levelData[3].diamondMap = [

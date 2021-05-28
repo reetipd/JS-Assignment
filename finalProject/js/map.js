@@ -5,7 +5,6 @@ function drawMap(levelId){
                         ctx.drawImage(tile,j*tileSize,i*tileSize,tileSize,tileSize);
                     }
                     if(gameMap[i][j] === 0){
-                        // console.log('here')
                         ctx.fillStyle = "#322d16";
                         ctx.fillRect(j*tileSize,i*tileSize,tileSize,tileSize);
                     }
@@ -22,30 +21,20 @@ function drawMap(levelId){
     }
    
 }
-var frameX = 0;
+
 function drawDiamondMap(){
     for(var i=0; i<diamondMap.length; i++){
         for(var j=0; j<diamondMap[i].length; j++){
             if(diamondMap[i][j] === 8){
-                // ctx.fillStyle = "gray";
-                // ctx.fillRect(j*tileSize+10,i*tileSize-10,20,20);
-
                 ctx.drawImage(blueDiamond,j*tileSize+10,i*tileSize-10,20,20);
-                // ctx.drawImage(blue,frameX*32,0,32,32,j*tileSize+10,i*tileSize-10,32,32);
             }
             if(diamondMap[i][j] === 9){
-                // ctx.fillStyle = "pink";
-                // ctx.fillRect(j*tileSize+10,i*tileSize-10,20,20);
                 ctx.drawImage(redDiamond,j*tileSize+10,i*tileSize-10,20,20);
             }
             if(diamondMap[i][j] === 18){
-                // ctx.fillStyle = "gray";
-                // ctx.fillRect(j*tileSize+10,i*tileSize-10,20,20);
                 ctx.drawImage(blueDiamond,j*tileSize+10,i*tileSize+10,20,20);
             }
             if(diamondMap[i][j] === 19){
-                // ctx.fillStyle = "pink";
-                // ctx.fillRect(j*tileSize+10,i*tileSize-10,20,20);
                 ctx.drawImage(redDiamond,j*tileSize+10,i*tileSize+10,20,20);
             }
         }
@@ -53,7 +42,6 @@ function drawDiamondMap(){
 }
 
 function drawCollisionMap(){
-    // console.log('called')
     var l1,l2;
     var count = 0;
     for(var i=0; i<gameMap.length; i++){
@@ -94,12 +82,7 @@ function drawBlockageMap(){
                 ctx.drawImage(plateImg,j*tileSize,i*tileSize+38,24,15);
             }
             if(blockageMap[i][j] === 23){  ///liquid change
-                // console.log(i,j) 
                 ctx.drawImage(plateImg,j*tileSize,i*tileSize+38,24,15);
-            }
-            if(blockageMap[i][j] === 25){  ///block 
-                // console.log(i,j) 
-                ctx.drawImage(block,j*tileSize,i*tileSize,tileSize,tileSize);
             }
             if(blockageMap[i][j] === 26){ //to remove block
                 ctx.drawImage(plateImg,j*tileSize,i*tileSize+38,24,15);

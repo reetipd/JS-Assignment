@@ -139,12 +139,6 @@ var Collider = function(){
                         }
                 }
                 break;
-            case 25:   //block
-                if(player.rightCollision(tileX,tileY))return;
-                if(player.leftCollision(tileX))return;
-                if(player.bottomCollision(tileY + tileSize))return;
-                if(player.topCollision(tileY))return;
-                break;
             case 26:  //open blockage block
                 box.update();
                 break;

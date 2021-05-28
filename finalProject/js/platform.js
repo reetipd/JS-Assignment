@@ -31,6 +31,8 @@ var Platform = function(x,y,type){
         this.x = this.initialX;
         this.y = this.initialY;
         this.vx = this.vy = 0;
+        this.oldX = this.x;
+        this.oldY = this.y;
         this.d = 0;
     }
 
